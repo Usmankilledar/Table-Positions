@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Only Layout & Table</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      z-index: 1000;
+    }
+
+    aside {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 200px;
+      height: calc(100% - 120px);
+      background-color: #f4f4f4;
+      padding: 1rem;
+      overflow-y: auto;
+      z-index: 900;
+    }
+
+    main {
+      margin-left: 220px;
+      padding: 2rem;
+      background-color: #fafafa;
+      min-height: 100vh;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 0.5rem;
+      z-index: 1000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #444;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .relative-box {
+      position: relative;
+      background: #e0f7fa;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .absolute-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ffccbc;
+      padding: 1rem;
+      z-index: 1;
+    }
+
+    .modal,
+    .overlay {
+      display: none;
+      position: fixed;
+    }
+
+    .overlay {
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1500;
+    }
+
+    .modal {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 2000;
+      max-width: 90%;
+    }
+
+    
+    #popup:target .modal,
+    #popup:target .overlay {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        display: none;
+      }
+
+      main {
+        margin-left: 0;
+      }
+
+      table, th, td {
+        font-size: 14px;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Sticky Header
+  </header>
+
+  <aside>
+    Fixed Sidebar<br>
+    - Link 1<br>
+    - Link 2<br>
+  </aside>
+
+  <main>
+    <h1>ULTIMEZ STAFFS</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>MEENAKSHI</td><td>25</td><td>USA</td></tr>
+        <tr><td>KEERTHI</td><td>30</td><td>Canada</td></tr>
+        <tr><td>QADIR</td><td>35</td><td>UK</td></tr>
+      </tbody>
+    </table>
+
+    <div class="relative-box">
+      Relative Positioned Box
+      <div class="absolute-box">Absolutely Positioned Inside</div>
+    </div>
+
+    <a href="#popup" class="btn">Show Modal</a>
+  </main>
+
+  <footer>
+    Sticky Footer
+  </footer>
+
+  
+  <div id="popup">
+    <a href="#" class="overlay"></a>
+    <div class="modal">
+      <h2>Popup Modal</h2>
+      <p>This modal is centered using only CSS.</p>
+      <a href="#" class="btn">Close</a>
+    </div>
+  </div>
+</body>
+</html>
